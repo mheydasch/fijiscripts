@@ -1,0 +1,20 @@
+function brightness(folder, output, filename) {
+run("Subtract Background...", "rolling=50");
+//run("Brightness/Contrast...");
+open(folder + filename);
+setMinAndMax(136, 2000);
+run("Apply LUT", "stack");
+saveAs("Tif", output + filename);
+}
+folder = getDirectory();
+output = folder + "adjusted/";
+setBatchMode(true);
+list = getFileList(folder)
+for (i = 0; i <list.length; i++) 
+		brightness(folder, output, list[i]);
+
+setBatchMode(false);
+
+
+
+
